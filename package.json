@@ -14,13 +14,16 @@
     "@nuxt/devtools": "^1.0.3",
     "@nuxt/eslint": "^1.5.2",
     "@nuxtjs/tailwindcss": "^6.14.0",
+    "@pinia/nuxt": "0.11.1",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",
     "nuxt": "^3.8.2",
+    "pinia": "^3.0.3",
     "prettier": "^3.6.2",
     "typescript": "^5.8.3",
     "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "vue-tsc": "^3.0.1"
   },
   "dependencies": {
     "yarn": "^1.22.22"
