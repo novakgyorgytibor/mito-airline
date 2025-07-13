@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const getTailwindConfig = require("./config/tailwind");
+
 export default defineNuxtConfig({
   modules: ["@nuxt/eslint", "@nuxtjs/tailwindcss", "@pinia/nuxt"],
   devtools: { enabled: true },
@@ -13,20 +15,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: "http://localhost:8000",
+      apiBaseUrl: process.env.API_BASE_URL,
     },
   },
-  tailwindcss: {
-    config: {
-      theme: {
-        extend: {
-          colors: {
-            lipstick: "#C6007E",
-            "navy-blue": "#06038D",
-            tutu: "#FFF2FA",
-          },
-        },
-      },
-    },
-  },
+  tailwindcss: { config: getTailwindConfig() },
 });
