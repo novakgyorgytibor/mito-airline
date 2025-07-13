@@ -26,6 +26,7 @@
     "vue-tsc": "^3.0.1"
   },
   "dependencies": {
+    "@vueform/nuxt": "^1.16.0",
     "yarn": "^1.22.22"
   }
 }

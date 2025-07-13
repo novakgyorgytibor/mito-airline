@@ -29,5 +29,10 @@ onMounted(() => {
     </div>
     {{ stations[0] }}
     Szia Orsi!
+    <ClientOnly>
+      <Vueform>
+        <TextElement name="hello_world" label="Hello" placeholder="World" />
+      </Vueform>
+    </ClientOnly>
   </div>
 </template>

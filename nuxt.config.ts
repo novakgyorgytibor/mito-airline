@@ -1,8 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-const getTailwindConfig = require("./config/tailwind");
-
 export default defineNuxtConfig({
-  modules: ["@nuxt/eslint", "@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: [
+    "@nuxt/eslint",
+    "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+    "@vueform/nuxt",
+  ],
   devtools: { enabled: true },
   typescript: {
     typeCheck: true,
@@ -18,5 +21,4 @@ export default defineNuxtConfig({
       apiBaseUrl: process.env.API_BASE_URL,
     },
   },
-  tailwindcss: { config: getTailwindConfig() },
 });
