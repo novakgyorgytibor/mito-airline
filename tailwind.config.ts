@@ -12,6 +12,12 @@ module.exports = {
         "navy-blue": "#06038D",
         tutu: "#FFF2FA",
       },
+      maxWidth: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+      },
     },
   },
   plugins: [require("@vueform/vueform/tailwind")],
