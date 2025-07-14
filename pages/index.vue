@@ -3,6 +3,8 @@ import { storeToRefs } from "pinia";
 import { useFlightsStore } from "~/stores/flights";
 import { useStationsStore } from "~/stores/stations";
 import MitoSpring from "~/components/common/MitoSpring.vue";
+import MitoCard from "~/components/common/MitoCard.vue";
+import MitoSearchForm from "~/components/search/MitoSearchForm.vue";
 
 const flightsStore = useFlightsStore();
 const { fetchFlights } = flightsStore;
@@ -12,10 +14,10 @@ const stationsStore = useStationsStore();
 const { fetchStations } = stationsStore;
 const { stations } = storeToRefs(stationsStore);
 
-onMounted(() => {
+onMounted(async () => {
   try {
-    fetchFlights();
-    fetchStations();
+    await fetchFlights();
+    await fetchStations();
   } catch (error) {
     console.error(error);
   }
@@ -23,17 +25,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <MitoSpring size="lg">
-    Mito Airline <NuxtLink to="/select-flight">Search</NuxtLink>
-    <div class="bg-">
-      {{ flights[0] }}
-    </div>
-    {{ stations[0] }}
-    <b>Szia Orsi!</b>
-    <ClientOnly>
-      <Vueform>
-        <TextElement name="hello_world" label="Hello" placeholder="World" />
-      </Vueform>
-    </ClientOnly>
+  <MitoSpring size="md">
+    <MitoCard>
+      <template #header>MITO AIRLINE</template>
+      <template #content>
+        <MitoSearchForm />
+      </template>
+    </MitoCard>
   </MitoSpring>
 </template>

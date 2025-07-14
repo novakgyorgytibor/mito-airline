@@ -8,7 +8,9 @@ export default defineNuxtPlugin(() => {
         async get(url: string, params: object = {}) {
           return $fetch(`${baseUrl}${url}`, {
             method: "GET",
-            ...params,
+            query: {
+              ...params,
+            },
           });
         },
       },
