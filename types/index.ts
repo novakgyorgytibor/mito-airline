@@ -31,3 +31,10 @@ export interface Cart {
   items: CartItem[];
   total: Price;
 }
+
+export interface SearchFormData {
+  origin: string;
+  destination: string;
+  inboundDate: string;
+  outboundDate: string;
+}
