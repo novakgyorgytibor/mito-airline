@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useCheckoutStore } from "~/stores/checkout";
+import { useSearchFormStore } from "~/stores/searchForm";
 import { useStationsStore } from "~/stores/stations";
 
-const checkoutStore = useCheckoutStore();
-const { searchFormData } = storeToRefs(checkoutStore);
+const searchFormStore = useSearchFormStore();
+const { searchFormData } = storeToRefs(searchFormStore);
 
 const stationsStore = useStationsStore();
 const { getStationByIata } = stationsStore;

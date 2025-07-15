@@ -5,15 +5,15 @@ import type { Station, SearchFormData } from "~/types";
 
 import { storeToRefs } from "pinia";
 import { useStationsStore } from "~/stores/stations";
-import { useCheckoutStore } from "~/stores/checkout";
+import { useSearchFormStore } from "~/stores/searchForm";
 
 const stationsStore = useStationsStore();
 const { fetchStations } = stationsStore;
 const { stations } = storeToRefs(stationsStore);
 
-const checkoutStore = useCheckoutStore();
-const { searchFormData } = storeToRefs(checkoutStore);
-const { setSearchFormData, fetchSearchFormData } = checkoutStore;
+const searchFormStore = useSearchFormStore();
+const { searchFormData } = storeToRefs(searchFormStore);
+const { setSearchFormData, fetchSearchFormData } = searchFormStore;
 
 interface SelectOption {
   value: string;
