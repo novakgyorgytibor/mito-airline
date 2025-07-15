@@ -29,6 +29,7 @@
   "dependencies": {
     "@vueform/nuxt": "^1.16.0",
     "nuxt-storage": "^1.2.2",
-    "yarn": "^1.22.22"
+    "yarn": "^1.22.22",
+    "@parcel/watcher": "~2.1.0"
   }
 }
