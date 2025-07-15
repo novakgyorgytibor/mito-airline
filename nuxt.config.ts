@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "@vueform/nuxt",
-    "@nuxt/icon",
+    // @ts-ignore
+    { name: "@nuxt/icon", ssr: false },
   ],
   devtools: { enabled: true },
   typescript: {
