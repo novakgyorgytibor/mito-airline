@@ -9,8 +9,13 @@ export const useStationsStore = defineStore("stationsStore", () => {
     stations.value = (await $api.get("/stations")) as Station[];
   }
 
+  function getStationByIata(iata: string): Station | undefined {
+    return stations.value.find((station) => station.iata === iata);
+  }
+
   return {
     stations,
     fetchStations,
+    getStationByIata,
   };
 });

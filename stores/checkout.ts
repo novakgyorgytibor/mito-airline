@@ -10,12 +10,26 @@ export const useCheckoutStore = defineStore("checkoutStore", () => {
     outboundDate: "",
   });
 
-  async function setSearchFormData(data: SearchFormData): Promise<void> {
+  function fetchSearchFormData() {
+    const data = localStorage.getItem("searchFormData");
+
+    if (data) {
+      searchFormData.value = JSON.parse(data) as SearchFormData;
+    }
+  }
+
+  function saveSearchFormData(data: SearchFormData) {
+    localStorage.setItem("searchFormData", JSON.stringify(data));
+  }
+
+  function setSearchFormData(data: SearchFormData) {
     searchFormData.value = data;
+    saveSearchFormData(data);
   }
 
   return {
     searchFormData,
     setSearchFormData,
+    fetchSearchFormData,
   };
 });

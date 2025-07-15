@@ -12,7 +12,8 @@ const { fetchStations } = stationsStore;
 const { stations } = storeToRefs(stationsStore);
 
 const checkoutStore = useCheckoutStore();
-const { setSearchFormData } = checkoutStore;
+const { searchFormData } = storeToRefs(checkoutStore);
+const { setSearchFormData, fetchSearchFormData } = checkoutStore;
 
 interface SelectOption {
   value: string;
@@ -71,6 +72,11 @@ function inboundDateChanged(date: string) {
   minOutboundDate.value = date;
 }
 
+function onChange(form$: SearchFormData) {
+  formData.value = form$ as SearchFormData;
+  setSearchFormData(formData.value);
+}
+
 function onSubmit(_: FormData, form$: Iterable<any>) {
   formData.value = Object.fromEntries(form$) as SearchFormData;
   setSearchFormData(formData.value);
@@ -79,8 +85,12 @@ function onSubmit(_: FormData, form$: Iterable<any>) {
 
 onMounted(async () => {
   try {
+    fetchSearchFormData();
     await fetchStations();
     setOriginOptions(stations.value);
+    if (searchFormData.value.origin) {
+      await fetchDestinationOptions(searchFormData.value.origin);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -89,7 +99,13 @@ onMounted(async () => {
 
 <template>
   <ClientOnly>
-    <Vueform class="w-full sm:min-w-sm" :endpoint="false" @submit="onSubmit">
+    <Vueform
+      class="w-full sm:min-w-sm"
+      :endpoint="false"
+      @submit="onSubmit"
+      @change="onChange"
+      :default="searchFormData"
+    >
       <SelectElement
         name="origin"
         placeholder="Origin"

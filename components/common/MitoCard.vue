@@ -5,7 +5,9 @@ import MitoHeader from "~/components/common/MitoHeader.vue";
 <template>
   <div class="bg-white drop-shadow-md">
     <MitoHeader>
-      <slot name="header" />
+      <div class="font-semibold">
+        <slot name="header" />
+      </div>
     </MitoHeader>
     <div class="p-6">
       <slot name="content" />
