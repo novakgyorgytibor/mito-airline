@@ -4,6 +4,7 @@ import MitoHeader from "~/components/common/MitoHeader.vue";
 import MitoCheckoutHeader from "~/components/checkout/MitoCheckoutHeader.vue";
 import { useFlightsStore } from "~/stores/flights";
 import { useStationsStore } from "~/stores/stations";
+import { useCheckoutStore } from "~/stores/checkout";
 import MitoSelectFlight from "~/components/checkout/MitoSelectFlight.vue";
 import { storeToRefs } from "pinia";
 
@@ -12,6 +13,10 @@ const { fetchFlights } = flightsStore;
 
 const stationsStore = useStationsStore();
 const { fetchStations } = stationsStore;
+
+const checkoutStore = useCheckoutStore();
+const { setSelectedInbound, setSelectedOutbound } = checkoutStore;
+const { selectedInbound, selectedOutbound } = storeToRefs(checkoutStore);
 
 const searchFormStore = useSearchFormStore();
 const { fetchSearchFormData } = searchFormStore;
@@ -40,12 +45,14 @@ onMounted(async () => {
           :date="searchFormData.inboundDate"
           :origin="searchFormData.origin"
           :destination="searchFormData.destination"
+          @update:selected-flight="setSelectedInbound"
         ></MitoSelectFlight>
         <MitoSelectFlight
           title="OUTBOUND"
           :date="searchFormData.inboundDate"
           :origin="searchFormData.destination"
           :destination="searchFormData.origin"
+          @update:selected-flight="setSelectedOutbound"
         ></MitoSelectFlight>
       </div>
     </div>

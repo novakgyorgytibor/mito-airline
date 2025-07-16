@@ -17,7 +17,7 @@ defineProps({
       </div>
     </MitoHeader>
     <slot name="custom-header" />
-    <div class="p-6">
+    <div>
       <slot name="content" />
     </div>
   </div>

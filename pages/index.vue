@@ -30,7 +30,9 @@ onMounted(async () => {
       <MitoCard>
         <template #header>MITO AIRLINE</template>
         <template #content>
-          <MitoSearchForm />
+          <div class="p-6">
+            <MitoSearchForm />
+          </div>
         </template>
       </MitoCard>
     </MitoSpring>

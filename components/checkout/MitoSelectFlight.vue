@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Station, Flight } from "~/types";
+import type { Station, Flight, CartItem } from "~/types";
 import MitoCard from "~/components/common/MitoCard.vue";
 import MitoDateSelector from "~/components/checkout/MitoDateSelector.vue";
+import MItoFlightItem from "~/components/checkout/MItoFlightItem.vue";
 const { $api } = useNuxtApp();
 
 const selectedOrigin = ref<Station>({
@@ -15,6 +16,10 @@ const selectedDestination = ref<Station>({
   shortName: "",
   connections: [],
 });
+
+const emits = defineEmits<{
+  (e: "update:selectedFlight", payload: CartItem): void;
+}>();
 
 const availableFlights = ref<Flight[]>([]);
 
@@ -104,6 +109,10 @@ onMounted(async () => {
     },
   );
 });
+
+function onFlightSelected(flight: CartItem) {
+  emits("update:selectedFlight", flight);
+}
 </script>
 
 <template>
@@ -130,9 +139,12 @@ onMounted(async () => {
       />
     </template>
     <template v-if="availableFlights.length" #content>
-      <div v-for="(flight, index) in availableFlights" :key="index">
-        {{ flight }}
-      </div>
+      <MItoFlightItem
+        v-for="(flight, index) in availableFlights"
+        :flight="flight"
+        :key="index"
+        @update:selected-flight="onFlightSelected"
+      />
     </template>
     <template v-else #content>
       <div class="text-lipstick font-semibold text-center uppercase">
