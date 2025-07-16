@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: "https://mito-airline-be.vercel.app/",
+      apiBaseUrl: "http://localhost:3000",
     },
   },
 });

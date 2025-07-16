@@ -27,9 +27,10 @@
     "vue-tsc": "^3.0.1"
   },
   "dependencies": {
+    "@parcel/watcher": "~2.1.0",
     "@vueform/nuxt": "^1.16.0",
+    "moment": "^2.30.1",
     "nuxt-storage": "^1.2.2",
-    "yarn": "^1.22.22",
-    "@parcel/watcher": "~2.1.0"
+    "yarn": "^1.22.22"
   }
 }

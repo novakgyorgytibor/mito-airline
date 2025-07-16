@@ -25,12 +25,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <MitoSpring size="md">
-    <MitoCard>
-      <template #header>MITO AIRLINE</template>
-      <template #content>
-        <MitoSearchForm />
-      </template>
-    </MitoCard>
-  </MitoSpring>
+  <div class="py-4 bg-secondary h-[100vh]">
+    <MitoSpring size="md">
+      <MitoCard>
+        <template #header>MITO AIRLINE</template>
+        <template #content>
+          <MitoSearchForm />
+        </template>
+      </MitoCard>
+    </MitoSpring>
+  </div>
 </template>

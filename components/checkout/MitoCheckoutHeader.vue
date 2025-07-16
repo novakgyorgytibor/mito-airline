@@ -28,7 +28,7 @@ onMounted(() => {
 <template>
   <div
     v-if="originShortName && destinationShortName"
-    class="relative flex items-center text-2xl pt-4"
+    class="relative flex items-center md:text-2xl pt-4"
   >
     <div class="px-2">
       <div class="absolute text-xs bottom-8">LEAVING FROM</div>
