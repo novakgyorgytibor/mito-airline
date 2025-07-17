@@ -183,7 +183,7 @@ function onFlightSelected(flight: CartItem | undefined) {
       />
     </template>
     <template v-else #content>
-      <div class="text-lipstick font-semibold text-center uppercase py-2">
+      <div class="text-lipstick font-semibold text-center py-2">
         No flights found!
       </div></template
     >
