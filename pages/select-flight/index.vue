@@ -40,6 +40,16 @@ onMounted(async () => {
       <MitoCheckoutHeader />
     </MitoHeader>
     <div
+      class="flex items-center justify-center p-8 md:text-3xl text-navy-blue"
+    >
+      <img
+        src="/assets/mito-airplane.svg"
+        alt="airplane"
+        class="inline-block pr-4"
+      />
+      SELECT FLIGHT
+    </div>
+    <div
       class="flex flex-col-reverse md:flex-row justify-center py-4 px-4 bg-secondary mb-12"
     >
       <div class="p-3">

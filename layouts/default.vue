@@ -20,5 +20,6 @@ body {
   --vf-primary: #3434e0;
   --vf-primary-darker: #3434e0;
   --vf-danger: #c6007e;
+  --vf-ring-color: #3434e0;
 }
 </style>

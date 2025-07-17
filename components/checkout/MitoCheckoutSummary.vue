@@ -34,16 +34,19 @@ function reset(clearOrder: Boolean) {
 </script>
 
 <template>
-  <MitoCard :display-header="false" class="h-fit min-w-[16rem] mt-4">
+  <MitoCard
+    :display-header="false"
+    class="h-fit min-w-[16rem] mt-4 border-t-[#C1C1C1] border-t-2"
+  >
     <template #content>
       <div class="flex justify-between p-3 font-semibold text-sm">
         <div>CART</div>
-        <div v-if="totalPrice" class="text-navy-blue">
-          {{ currency }} {{ formatPrice(totalPrice) }}
+        <div class="text-navy-blue">
+          {{ currency || "HUF" }} {{ formatPrice(totalPrice) }}
         </div>
       </div>
-      <div v-if="!totalPrice" class="text-lipstick uppercase p-4 font-semibold">
-        Select flights!
+      <div v-if="!totalPrice" class="text-[#919191] p-4 font-semibold">
+        Choose an outbound flight
       </div>
       <MitoCheckoutSummaryItem
         v-if="selectedOutbound"
@@ -54,11 +57,10 @@ function reset(clearOrder: Boolean) {
         :flight="selectedInbound"
       />
       <div
-        v-if="totalPrice"
         class="flex justify-between p-3 font-semibold text-sm text-white bg-navy-blue mt-2"
       >
         <div>TOTAL</div>
-        <div>{{ currency }} {{ formatPrice(totalPrice) }}</div>
+        <div>{{ currency || "HUF" }} {{ formatPrice(totalPrice) }}</div>
       </div>
     </template>
   </MitoCard>
