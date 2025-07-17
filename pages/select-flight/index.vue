@@ -38,21 +38,24 @@ onMounted(async () => {
     <MitoHeader class="fixed top-0">
       <MitoCheckoutHeader />
     </MitoHeader>
-    <div class="flex justify-center py-4 bg-secondary mb-12">
+    <div class="flex justify-center py-4 px-4 bg-secondary mb-12">
       <div>
-        <MitoSelectFlight
-          title="INBOUND"
-          :date="searchFormData.inboundDate"
-          :origin="searchFormData.origin"
-          :destination="searchFormData.destination"
-          @update:selected-flight="setSelectedInbound"
-        ></MitoSelectFlight>
         <MitoSelectFlight
           title="OUTBOUND"
           :date="searchFormData.inboundDate"
+          :origin="searchFormData.origin"
+          :destination="searchFormData.destination"
+          :selected-flight="selectedOutbound"
+          @update:selected-flight="setSelectedOutbound"
+        ></MitoSelectFlight>
+        <MitoSelectFlight
+          title="INBOUND"
+          :date="searchFormData.inboundDate"
           :origin="searchFormData.destination"
           :destination="searchFormData.origin"
-          @update:selected-flight="setSelectedOutbound"
+          :selected-flight="selectedInbound"
+          :min-date="selectedOutbound?.arrivalDateTime"
+          @update:selected-flight="setSelectedInbound"
         ></MitoSelectFlight>
       </div>
     </div>

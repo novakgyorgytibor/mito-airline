@@ -3,6 +3,9 @@ import type { Station, Flight, CartItem } from "~/types";
 import MitoCard from "~/components/common/MitoCard.vue";
 import MitoDateSelector from "~/components/checkout/MitoDateSelector.vue";
 import MItoFlightItem from "~/components/checkout/MItoFlightItem.vue";
+import type { PropType } from "vue";
+import moment from "moment";
+
 const { $api } = useNuxtApp();
 
 const selectedOrigin = ref<Station>({
@@ -18,7 +21,7 @@ const selectedDestination = ref<Station>({
 });
 
 const emits = defineEmits<{
-  (e: "update:selectedFlight", payload: CartItem): void;
+  (e: "update:selectedFlight", payload: CartItem | undefined): void;
 }>();
 
 const availableFlights = ref<Flight[]>([]);
@@ -41,6 +44,14 @@ const props = defineProps({
   date: {
     type: String,
     required: true,
+  },
+  selectedFlight: {
+    type: Object as PropType<CartItem | undefined>,
+    required: true,
+  },
+  minDate: {
+    type: [String, Boolean],
+    default: false,
   },
 });
 
@@ -110,7 +121,7 @@ onMounted(async () => {
   );
 });
 
-function onFlightSelected(flight: CartItem) {
+function onFlightSelected(flight: CartItem | undefined) {
   emits("update:selectedFlight", flight);
 }
 </script>
@@ -139,16 +150,28 @@ function onFlightSelected(flight: CartItem) {
       />
     </template>
     <template v-if="availableFlights.length" #content>
-      <MItoFlightItem
-        v-for="(flight, index) in availableFlights"
-        :flight="flight"
-        :key="index"
-        @update:selected-flight="onFlightSelected"
-      />
+      <div :key="selectedDate">
+        <MItoFlightItem
+          v-for="(flight, index) in availableFlights"
+          :flight="flight"
+          :selected-flight="selectedFlight"
+          :disabled="
+            typeof minDate === 'string' &&
+            moment(minDate).isAfter(moment(flight.departureDateTime))
+          "
+          :display-bundle="!index"
+          :key="index"
+          class="md:bg-transparent"
+          :class="{
+            'bg-[#F2F2F2]': index % 2,
+          }"
+          @update:selected-flight="onFlightSelected"
+        />
+      </div>
     </template>
     <template v-else #content>
       <div class="text-lipstick font-semibold text-center uppercase">
-        No flights found, sorry!
+        No flights found!
       </div></template
     >
   </MitoCard>
