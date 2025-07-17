@@ -37,7 +37,7 @@
         "submit": "Pay now"
       },
       "modal": {
-        "title": "Thanks for buying your tickets at mito airlines!",
+        "title": "Thanks for buying your ticket(s) at mito airlines!",
         "total": "TOTAL:",
         "reset": "Reset"
       }
