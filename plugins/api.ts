@@ -1,15 +1,20 @@
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig();
-  const baseUrl = config.public.apiBaseUrl;
 
   return {
     provide: {
       api: {
         async get(url: string, params: object = {}) {
-          return $fetch(`${baseUrl}${url}`, {
+          return $fetch(`/api${url}`, {
             method: "GET",
             query: {
               ...params,
+            },
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+              "Access-Control-Allow-Headers":
+                "Origin, X-Requested-With, Content-Type, Accept, Authorization",
             },
           });
         },
