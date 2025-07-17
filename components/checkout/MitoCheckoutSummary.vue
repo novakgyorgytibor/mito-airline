@@ -5,12 +5,17 @@ import MitoModal from "~/components/common/MitoModal.vue";
 import MitoPaymentModalContent from "~/components/checkout/MitoPaymentModalContent.vue";
 
 import { useCheckoutStore } from "~/stores/checkout";
+import { useSearchFormStore } from "~/stores/searchForm";
 import { storeToRefs } from "pinia";
 import { formatPrice } from "~/utils";
 
 const checkoutStore = useCheckoutStore();
 const { selectedInbound, selectedOutbound, totalPrice, currency } =
   storeToRefs(checkoutStore);
+const { resetCheckoutData } = checkoutStore;
+
+const searchFormStore = useSearchFormStore();
+const { resetSearchFormData } = searchFormStore;
 
 const isPaymentModalOpen = ref<boolean>(false);
 
@@ -20,6 +25,11 @@ function startPayment() {
 
 function reset(clearOrder: Boolean) {
   isPaymentModalOpen.value = false;
+  if (clearOrder) {
+    resetCheckoutData();
+    resetSearchFormData();
+    navigateTo("/");
+  }
 }
 </script>
 

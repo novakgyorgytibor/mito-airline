@@ -38,6 +38,11 @@ export const useCheckoutStore = defineStore("checkoutStore", () => {
     return selectedOutbound.value?.selectedFare?.price?.currencyCode;
   });
 
+  function resetCheckoutData() {
+    selectedOutbound.value = undefined;
+    selectedInbound.value = undefined;
+  }
+
   return {
     selectedInbound,
     selectedOutbound,
@@ -45,5 +50,6 @@ export const useCheckoutStore = defineStore("checkoutStore", () => {
     setSelectedOutbound,
     totalPrice,
     currency,
+    resetCheckoutData,
   };
 });

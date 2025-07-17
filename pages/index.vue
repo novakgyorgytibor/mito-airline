@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useFlightsStore } from "~/stores/flights";
 import { useStationsStore } from "~/stores/stations";
+import { useCheckoutStore } from "~/stores/checkout";
 import MitoSpring from "~/components/common/MitoSpring.vue";
 import MitoCard from "~/components/common/MitoCard.vue";
 import MitoSearchForm from "~/components/search/MitoSearchForm.vue";
@@ -14,10 +15,14 @@ const stationsStore = useStationsStore();
 const { fetchStations } = stationsStore;
 const { stations } = storeToRefs(stationsStore);
 
+const checkoutStore = useCheckoutStore();
+const { resetCheckoutData } = checkoutStore;
+
 onMounted(async () => {
   try {
     await fetchFlights();
     await fetchStations();
+    resetCheckoutData();
   } catch (error) {
     console.error(error);
   }
