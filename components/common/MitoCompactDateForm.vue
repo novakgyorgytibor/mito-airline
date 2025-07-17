@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import moment from "moment/moment";
-
 const emits = defineEmits<{
   (e: "update:date", payload: string): void;
 }>();
 
-const minDate = ref<string>(moment(new Date()).format("YYYY-MM-DD"));
+const props = defineProps({
+  minDate: {
+    type: String,
+    default: undefined,
+  },
+});
 
 function onSubmit(_: FormData, form$: Iterable<any>) {
   emits("update:date", Object.fromEntries(form$).date);

@@ -177,6 +177,7 @@ function onFlightSelected(flight: CartItem | undefined) {
     </template>
     <template v-else-if="minSearchableDate && !selectedDate" #content>
       <MitoCompactDateForm
+        :min-date="minSearchableDate"
         class="max-w-sm m-auto py-4"
         @update:date="fetchAvailableFlights"
       />
