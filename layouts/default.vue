@@ -1,4 +1,5 @@
 <template>
+  <div id="mito-modals"></div>
   <div>
     <div class="pt-24 pb-12">
       <slot />

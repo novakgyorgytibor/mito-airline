@@ -29,7 +29,7 @@ export const useCheckoutStore = defineStore("checkoutStore", () => {
     const outboundPrice =
       selectedOutbound.value?.selectedFare?.price?.amount || 0;
     const inboundPrice =
-      selectedOutbound.value?.selectedFare?.price?.amount || 0;
+      selectedInbound.value?.selectedFare?.price?.amount || 0;
 
     return outboundPrice + inboundPrice;
   });

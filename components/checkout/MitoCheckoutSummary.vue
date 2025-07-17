@@ -1,14 +1,26 @@
 <script setup lang="ts">
 import MitoCard from "~/components/common/MitoCard.vue";
+import MitoCheckoutSummaryItem from "~/components/checkout/MitoCheckoutSummaryItem.vue";
+import MitoModal from "~/components/common/MitoModal.vue";
+import MitoPaymentModalContent from "~/components/checkout/MitoPaymentModalContent.vue";
 
 import { useCheckoutStore } from "~/stores/checkout";
 import { storeToRefs } from "pinia";
 import { formatPrice } from "~/utils";
-import MitoCheckoutSummaryItem from "~/components/checkout/MitoCheckoutSummaryItem.vue";
 
 const checkoutStore = useCheckoutStore();
 const { selectedInbound, selectedOutbound, totalPrice, currency } =
   storeToRefs(checkoutStore);
+
+const isPaymentModalOpen = ref<boolean>(false);
+
+function startPayment() {
+  isPaymentModalOpen.value = true;
+}
+
+function reset(clearOrder: Boolean) {
+  isPaymentModalOpen.value = false;
+}
 </script>
 
 <template>
@@ -43,7 +55,11 @@ const { selectedInbound, selectedOutbound, totalPrice, currency } =
   <button
     v-if="totalPrice"
     class="w-full bg-lipstick text-white font-bold py-2 px-4 rounded mt-2 hover:scale-105 transition delay-150 duration-300"
+    @click="startPayment"
   >
     Pay now!
   </button>
+  <MitoModal :is-open="isPaymentModalOpen">
+    <MitoPaymentModalContent @reset="reset" />
+  </MitoModal>
 </template>
