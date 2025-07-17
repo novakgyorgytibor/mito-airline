@@ -7,6 +7,7 @@ import { useStationsStore } from "~/stores/stations";
 import { useCheckoutStore } from "~/stores/checkout";
 import MitoSelectFlight from "~/components/checkout/MitoSelectFlight.vue";
 import { storeToRefs } from "pinia";
+import MitoCheckoutSummary from "~/components/checkout/MitoCheckoutSummary.vue";
 
 const flightsStore = useFlightsStore();
 const { fetchFlights } = flightsStore;
@@ -38,8 +39,13 @@ onMounted(async () => {
     <MitoHeader class="fixed top-0" route="/">
       <MitoCheckoutHeader />
     </MitoHeader>
-    <div class="flex justify-center py-4 px-4 bg-secondary mb-12">
-      <div>
+    <div
+      class="flex flex-col-reverse md:flex-row justify-center py-4 px-4 bg-secondary mb-12"
+    >
+      <div class="p-3">
+        <MitoCheckoutSummary />
+      </div>
+      <div class="p-3">
         <MitoSelectFlight
           title="OUTBOUND"
           :date="searchFormData.outboundDate"

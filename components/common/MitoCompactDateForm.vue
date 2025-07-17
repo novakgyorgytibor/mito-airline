@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import moment from "moment";
-
 const emits = defineEmits<{
   (e: "update:date", payload: string): void;
 }>();
