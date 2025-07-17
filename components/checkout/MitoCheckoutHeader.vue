@@ -31,7 +31,9 @@ onMounted(() => {
     class="relative flex items-center md:text-2xl pt-4"
   >
     <div class="px-2">
-      <div class="absolute text-xs bottom-8">LEAVING FROM</div>
+      <div class="absolute text-xs bottom-8">
+        {{ $t("mito.checkout.header.label") }}
+      </div>
       {{ originShortName }}
     </div>
     <Icon name="ci:arrow-left-right" class="px-2"></Icon>

@@ -108,8 +108,8 @@ onMounted(async () => {
     >
       <SelectElement
         name="origin"
-        placeholder="Origin"
-        floating="Origin"
+        :placeholder="$t('mito.search_form.origin.label')"
+        :floating="$t('mito.search_form.origin.label')"
         :native="false"
         :items="originOptions"
         search
@@ -123,8 +123,8 @@ onMounted(async () => {
       />
       <SelectElement
         name="destination"
-        placeholder="Destination"
-        floating="Destination"
+        :placeholder="$t('mito.search_form.destination.label')"
+        :floating="$t('mito.search_form.destination.label')"
         :native="false"
         :items="destinationOptions"
         search
@@ -137,8 +137,8 @@ onMounted(async () => {
       />
       <DateElement
         name="outboundDate"
-        floating="Departure"
-        placeholder="Departure"
+        :floating="$t('mito.search_form.inbound_date.label')"
+        :placeholder="$t('mito.search_form.inbound_date.label')"
         :columns="{
           container: 6,
           label: 12,
@@ -149,8 +149,8 @@ onMounted(async () => {
       />
       <DateElement
         name="inboundDate"
-        floating="Return"
-        placeholder="Return"
+        :floating="$t('mito.search_form.outbound_date.label')"
+        :placeholder="$t('mito.search_form.outbound_date.label')"
         :columns="{
           container: 6,
           label: 12,
@@ -163,7 +163,7 @@ onMounted(async () => {
         name="submit"
         class="mx-auto"
         button-class="font-semibold min-w-[230px]"
-        >Search</ButtonElement
+        >{{ $t("mito.search_form.submit") }}</ButtonElement
       >
     </Vueform>
   </ClientOnly>

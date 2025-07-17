@@ -21,8 +21,8 @@ function onSubmit(_: FormData, form$: Iterable<any>) {
       <Vueform :endpoint="false" @submit="onSubmit" class="w-[230px] m-auto">
         <DateElement
           name="date"
-          floating="Date"
-          placeholder="Date"
+          :floating="$t('mito.compact_date_form.label')"
+          :placeholder="$t('mito.compact_date_form.label')"
           :min="minDate"
         />
         <ButtonElement
@@ -31,7 +31,7 @@ function onSubmit(_: FormData, form$: Iterable<any>) {
           class="mx-auto"
           button-class="w-[230px] font-semibold translate-y-[-8px]"
           :rules="['required']"
-          >Search</ButtonElement
+          >{{ $t("mito.compact_date_form.submit") }}</ButtonElement
         >
       </Vueform>
     </ClientOnly>

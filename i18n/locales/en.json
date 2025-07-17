@@ -1,0 +1,46 @@
+{
+  "mito": {
+    "compact_date_form": {
+      "label": "Date",
+      "submit": "Search"
+    },
+    "search_form": {
+      "title": "MITO AIRLINE",
+      "origin": {
+        "label": "Origin"
+      },
+      "destination": {
+        "label": "Destination"
+      },
+      "inbound_date": {
+        "label": "Departure"
+      },
+      "outbound_date": {
+        "label": "Return"
+      },
+      "submit": "Search"
+    },
+    "checkout": {
+      "title": "SELECT FLIGHT",
+      "header": {
+        "label": "LEAVING FROM"
+      },
+      "select_flight": {
+        "inbound": "INBOUND",
+        "outbound": "OUTBOUND",
+        "empty": "No flights found!"
+      },
+      "summary": {
+        "instruction": "Select an outbound flight",
+        "total": "TOTAL",
+        "cart": "CART",
+        "submit": "Pay now"
+      },
+      "modal": {
+        "title": "Thanks for buying your tickets at mito airlines!",
+        "total": "TOTAL:",
+        "reset": "Reset"
+      }
+    }
+  }
+}

@@ -40,26 +40,26 @@ function reset(clearOrder: Boolean) {
   >
     <template #content>
       <div class="flex justify-between p-3 font-semibold text-sm">
-        <div>CART</div>
+        <div>{{ $t("mito.checkout.summary.cart") }}</div>
         <div class="text-navy-blue">
           {{ currency || "HUF" }} {{ formatPrice(totalPrice) }}
         </div>
       </div>
       <div v-if="!totalPrice" class="text-[#919191] p-4 font-semibold">
-        Choose an outbound flight
+        {{ $t("mito.checkout.summary.instruction") }}
       </div>
       <MitoCheckoutSummaryItem
         v-if="selectedOutbound"
         :flight="selectedOutbound"
       />
       <MitoCheckoutSummaryItem
-        v-if="selectedOutbound"
+        v-if="selectedInbound"
         :flight="selectedInbound"
       />
       <div
         class="flex justify-between p-3 font-semibold text-sm text-white bg-navy-blue mt-2"
       >
-        <div>TOTAL</div>
+        <div>{{ $t("mito.checkout.summary.total") }}</div>
         <div>{{ currency || "HUF" }} {{ formatPrice(totalPrice) }}</div>
       </div>
     </template>
@@ -69,7 +69,7 @@ function reset(clearOrder: Boolean) {
     class="w-full bg-lipstick text-white font-bold py-2 px-4 rounded mt-2 hover:scale-105 transition delay-150 duration-300"
     @click="startPayment"
   >
-    Pay now!
+    {{ $t("mito.checkout.summary.submit") }}
   </button>
   <MitoModal :is-open="isPaymentModalOpen">
     <MitoPaymentModalContent @reset="reset" />

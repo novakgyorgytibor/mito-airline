@@ -33,7 +33,7 @@ onMounted(async () => {
   <div class="py-4 bg-secondary h-[100vh]">
     <MitoSpring size="md">
       <MitoCard>
-        <template #header>MITO AIRLINE</template>
+        <template #header>{{ $t("mito.search_form.title") }}</template>
         <template #content>
           <div class="p-6">
             <MitoSearchForm />

@@ -24,7 +24,7 @@ function reset() {
     <template #custom-header>
       <div class="bg-[#F2F2F2] p-4">
         <div class="hidden md:block text-navy-blue uppercase">
-          Thanks for buying your tickets at mito airlines!
+          {{ $t("mito.checkout.modal.title") }}
         </div>
       </div>
     </template>
@@ -46,7 +46,7 @@ function reset() {
         class="flex justify-between p-3 font-semibold text-sm mt-2 mx-2"
       >
         <div>
-          TOTAL:
+          {{ $t("mito.checkout.modal.total") }}
           <span class="text-navy-blue"
             >{{ currency }} {{ formatPrice(totalPrice) }}</span
           >
@@ -55,7 +55,7 @@ function reset() {
           @click="reset"
           class="text-lipstick uppercase underline cursor-pointer"
         >
-          Reset
+          {{ $t("mito.checkout.modal.reset") }}
         </div>
       </div>
     </template>

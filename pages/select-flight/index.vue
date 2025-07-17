@@ -47,7 +47,7 @@ onMounted(async () => {
         alt="airplane"
         class="inline-block pr-4"
       />
-      SELECT FLIGHT
+      {{ $t("mito.checkout.title") }}
     </div>
     <div
       class="flex flex-col-reverse md:flex-row justify-center py-4 px-4 bg-secondary mb-12"
@@ -57,7 +57,7 @@ onMounted(async () => {
       </div>
       <div class="p-3">
         <MitoSelectFlight
-          title="OUTBOUND"
+          :title="$t('mito.checkout.select_flight.outbound')"
           :date="searchFormData.outboundDate"
           :origin="searchFormData.origin"
           :destination="searchFormData.destination"
@@ -65,7 +65,7 @@ onMounted(async () => {
           @update:selected-flight="setSelectedOutbound"
         ></MitoSelectFlight>
         <MitoSelectFlight
-          title="INBOUND"
+          :title="$t('mito.checkout.select_flight.inbound')"
           :date="searchFormData.inboundDate"
           :origin="searchFormData.destination"
           :destination="searchFormData.origin"

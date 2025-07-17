@@ -184,7 +184,7 @@ function onFlightSelected(flight: CartItem | undefined) {
     </template>
     <template v-else #content>
       <div class="text-lipstick font-semibold text-center py-2">
-        No flights found!
+        {{ $t("mito.checkout.select_flight.empty") }}
       </div></template
     >
   </MitoCard>

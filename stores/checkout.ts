@@ -7,18 +7,24 @@ export const useCheckoutStore = defineStore("checkoutStore", () => {
   const selectedInbound = ref<CartItem>();
   const selectedOutbound = ref<CartItem>();
 
-  async function setSelectedInbound(inboundItem: CartItem | undefined) {
+  function setSelectedInbound(inboundItem: CartItem | undefined) {
     selectedInbound.value = inboundItem;
+    validateInbound();
   }
-  async function setSelectedOutbound(outboundItem: CartItem | undefined) {
+  function setSelectedOutbound(outboundItem: CartItem | undefined) {
     selectedOutbound.value = outboundItem;
     validateInbound();
   }
 
   function validateInbound() {
+    console.log("belefut/e ebbe");
+    console.log(selectedInbound.value?.departureDateTime);
+    console.log(selectedOutbound.value?.arrivalDateTime);
+    console.log(moment(selectedInbound.value?.departureDateTime));
+    console.log(moment(selectedOutbound.value?.arrivalDateTime));
     if (
-      moment(selectedInbound.value?.arrivalDateTime).isBefore(
-        moment(selectedOutbound.value?.departureDateTime),
+      moment(selectedInbound.value?.departureDateTime).isBefore(
+        moment(selectedOutbound.value?.arrivalDateTime),
       )
     ) {
       selectedInbound.value = undefined;
