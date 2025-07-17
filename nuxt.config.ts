@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
-    "/api//**": { proxy: process.env.API_BASE_URL },
+    "/api/**": { proxy: process.env.API_BASE_URL },
   },
   pinia: {
     storesDirs: ["./stores/**"],
