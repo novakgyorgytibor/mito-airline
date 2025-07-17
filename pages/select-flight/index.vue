@@ -35,14 +35,14 @@ onMounted(async () => {
 
 <template>
   <div class="pt-18">
-    <MitoHeader class="fixed top-0">
+    <MitoHeader class="fixed top-0" route="/">
       <MitoCheckoutHeader />
     </MitoHeader>
     <div class="flex justify-center py-4 px-4 bg-secondary mb-12">
       <div>
         <MitoSelectFlight
           title="OUTBOUND"
-          :date="searchFormData.inboundDate"
+          :date="searchFormData.outboundDate"
           :origin="searchFormData.origin"
           :destination="searchFormData.destination"
           :selected-flight="selectedOutbound"
@@ -55,6 +55,7 @@ onMounted(async () => {
           :destination="searchFormData.origin"
           :selected-flight="selectedInbound"
           :min-date="selectedOutbound?.arrivalDateTime"
+          :min-searchable-date="searchFormData.outboundDate"
           @update:selected-flight="setSelectedInbound"
         ></MitoSelectFlight>
       </div>

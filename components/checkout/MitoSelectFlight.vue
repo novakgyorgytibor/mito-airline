@@ -5,6 +5,7 @@ import MitoDateSelector from "~/components/checkout/MitoDateSelector.vue";
 import MItoFlightItem from "~/components/checkout/MItoFlightItem.vue";
 import type { PropType } from "vue";
 import moment from "moment";
+import MitoCompactDateForm from "~/components/common/MitoCompactDateForm.vue";
 
 const { $api } = useNuxtApp();
 
@@ -53,12 +54,17 @@ const props = defineProps({
     type: [String, Boolean],
     default: false,
   },
+  minSearchableDate: {
+    type: String,
+    default: undefined,
+  },
 });
 
 async function fetchAvailableFlights(date: string) {
   if (date && props.origin && props.destination) {
+    selectedDate.value = date;
     availableFlights.value = (await $api.get("/available-flights", {
-      date: selectedDate.value,
+      date: date,
       origin: props.origin,
       destination: props.destination,
     })) as Flight[];
@@ -169,8 +175,15 @@ function onFlightSelected(flight: CartItem | undefined) {
         />
       </div>
     </template>
+    <template v-else-if="minSearchableDate && !selectedDate" #content>
+      <MitoCompactDateForm
+        :min-date="minSearchableDate"
+        class="max-w-sm m-auto py-4"
+        @update:date="fetchAvailableFlights"
+      />
+    </template>
     <template v-else #content>
-      <div class="text-lipstick font-semibold text-center uppercase">
+      <div class="text-lipstick font-semibold text-center uppercase py-2">
         No flights found!
       </div></template
     >

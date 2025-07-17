@@ -136,7 +136,7 @@ onMounted(async () => {
         :rules="['required']"
       />
       <DateElement
-        name="inboundDate"
+        name="outboundDate"
         floating="Departure"
         placeholder="Departure"
         :columns="{
@@ -148,7 +148,7 @@ onMounted(async () => {
         @change="inboundDateChanged"
       />
       <DateElement
-        name="outboundDate"
+        name="inboundDate"
         floating="Return"
         placeholder="Return"
         :columns="{
@@ -168,14 +168,3 @@ onMounted(async () => {
     </Vueform>
   </ClientOnly>
 </template>
-
-<style>
-:root,
-:before,
-:after,
-* {
-  --vf-primary: #3434e0;
-  --vf-primary-darker: #3434e0;
-  --vf-danger: #c6007e;
-}
-</style>

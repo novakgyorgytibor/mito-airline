@@ -38,6 +38,9 @@ function isSelected(flight: CartItem) {
 }
 
 function onBundleClick(flight: CartItem) {
+  if (!flight.selectedFare.remainingTickets) {
+    return;
+  }
   if (isSelected(flight)) {
     emits("update:selectedFlight", undefined);
     return;
@@ -61,7 +64,6 @@ function onBundleClick(flight: CartItem) {
       class="md:w-1/4 p-3 text-center"
       :class="{
         'md:bg-[#F2F2F2]': index % 2,
-        'pointer-events-none grayscale opacity-50': disabled,
       }"
       @click="onBundleClick({ ...flight, selectedFare: fare })"
     >
@@ -78,6 +80,8 @@ function onBundleClick(flight: CartItem) {
             ...flight,
             selectedFare: fare,
           }),
+          'pointer-events-none grayscale opacity-50':
+            !fare.remainingTickets || disabled,
         }"
       >
         {{ fare.price.currencyCode }} {{ formatPrice(fare.price.amount) }}

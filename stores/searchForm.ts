@@ -27,9 +27,19 @@ export const useSearchFormStore = defineStore("searchFormStore", () => {
     saveSearchFormData(data);
   }
 
+  function resetSearchFormData() {
+    setSearchFormData({
+      origin: "",
+      destination: "",
+      inboundDate: "",
+      outboundDate: "",
+    });
+  }
+
   return {
     searchFormData,
     setSearchFormData,
     fetchSearchFormData,
+    resetSearchFormData,
   };
 });
