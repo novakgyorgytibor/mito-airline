@@ -28,7 +28,8 @@
       "select_flight": {
         "inbound": "INBOUND",
         "outbound": "OUTBOUND",
-        "empty": "No flights found!"
+        "empty": "No flights found!",
+        "sold_out": "SOLD OUT"
       },
       "summary": {
         "instruction": "Select an outbound flight",

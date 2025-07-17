@@ -80,11 +80,16 @@ function onBundleClick(flight: CartItem) {
             ...flight,
             selectedFare: fare,
           }),
-          'pointer-events-none grayscale opacity-50':
+          '!cursor-not-allowed grayscale opacity-50 hover:!bg-transparent hover:!text-black':
             !fare.remainingTickets || disabled,
         }"
       >
-        {{ fare.price.currencyCode }} {{ formatPrice(fare.price.amount) }}
+        <template v-if="fare.remainingTickets">
+          {{ fare.price.currencyCode }} {{ formatPrice(fare.price.amount) }}
+        </template>
+        <template v-else>
+          {{ $t("mito.checkout.select_flight.sold_out") }}
+        </template>
       </div>
     </div>
   </div>

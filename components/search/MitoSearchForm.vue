@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import moment from "moment";
+
 const { $api } = useNuxtApp();
 
 import type { Station, SearchFormData } from "~/types";
@@ -23,7 +25,8 @@ interface SelectOption {
 
 const originOptions = ref<SelectOption[]>([]);
 const destinationOptions = ref<SelectOption[]>([]);
-const minOutboundDate = ref<string>("");
+const minInboundDate = ref<string>("");
+const minOutboundDate = ref<string>(moment(new Date()).format("YYYY-MM-DD"));
 
 function setOriginOptions(stations: Station[]) {
   originOptions.value = stations.map((station) => {
@@ -68,8 +71,8 @@ function originChanged(station: string) {
   }
 }
 
-function inboundDateChanged(date: string) {
-  minOutboundDate.value = date;
+function outboundDateChanged(date: string) {
+  minInboundDate.value = date;
 }
 
 function onChange(form$: SearchFormData) {
@@ -102,9 +105,9 @@ onMounted(async () => {
     <Vueform
       class="w-full sm:min-w-sm"
       :endpoint="false"
-      @submit="onSubmit"
-      @change="onChange"
       :default="searchFormData"
+      @change="onChange"
+      @submit="onSubmit"
     >
       <SelectElement
         name="origin"
@@ -145,7 +148,8 @@ onMounted(async () => {
           wrapper: 12,
         }"
         :rules="['required']"
-        @change="inboundDateChanged"
+        :min="minOutboundDate"
+        @change="outboundDateChanged"
       />
       <DateElement
         name="inboundDate"
@@ -156,7 +160,7 @@ onMounted(async () => {
           label: 12,
           wrapper: 12,
         }"
-        :min="minOutboundDate"
+        :min="minInboundDate"
       />
       <ButtonElement
         submits

@@ -5,6 +5,8 @@ const emits = defineEmits<{
   (e: "update:selectedDate", payload: string): void;
 }>();
 
+const minSelectableDay = ref<string>(moment(new Date()).format("YYYY-MM-DD"));
+
 const props = defineProps({
   date: {
     type: String,
@@ -29,11 +31,23 @@ const nextDay = computed(() => {
   <div class="flex justify-between items-center p-4">
     <div
       class="cursor-pointer"
-      @click="emits('update:selectedDate', previousDay.format('YYYY-MM-DD'))"
+      :class="{
+        'grayscale opacity-30 !cursor-not-allowed':
+          previousDay.isBefore(minSelectableDay),
+      }"
+      @click="
+        () => {
+          if (previousDay.isBefore(minSelectableDay)) return;
+          emits('update:selectedDate', previousDay.format('YYYY-MM-DD'));
+        }
+      "
     >
       <Icon
         name="ci:chevron-left"
         class="text-lipstick translate-y-[3px]"
+        :class="{
+          '!text-[#919191]': previousDay.isBefore(minSelectableDay),
+        }"
       ></Icon>
       <span
         class="hidden md:inline text-[#919191] text-sm uppercase font-semibold"
