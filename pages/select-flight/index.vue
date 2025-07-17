@@ -28,6 +28,10 @@ onMounted(async () => {
     await fetchFlights();
     await fetchStations();
     fetchSearchFormData();
+
+    if (!searchFormData.value?.origin || !searchFormData.value?.destination) {
+      navigateTo("/");
+    }
   } catch (error) {
     console.error(error);
   }
@@ -40,7 +44,7 @@ onMounted(async () => {
       <MitoCheckoutHeader />
     </MitoHeader>
     <div
-      class="flex items-center justify-center p-8 md:text-3xl text-navy-blue"
+      class="flex items-center justify-center pt-4 md:pt-8 md:text-3xl text-navy-blue"
     >
       <img
         src="/assets/mito-airplane.svg"
