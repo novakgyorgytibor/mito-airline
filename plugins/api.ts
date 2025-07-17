@@ -5,16 +5,10 @@ export default defineNuxtPlugin(() => {
     provide: {
       api: {
         async get(url: string, params: object = {}) {
-          return $fetch(`/api${url}`, {
+          return $fetch(`/mito-api${url}`, {
             method: "GET",
             query: {
               ...params,
-            },
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-              "Access-Control-Allow-Headers":
-                "Origin, X-Requested-With, Content-Type, Accept, Authorization",
             },
           });
         },
